@@ -73,18 +73,6 @@ We can do the same thing for median.
 median(x)
 ```
 
-```{r}
-3-1
-```
-
-```{r}
-
-```
-
-```{r}
-
-```
-
 ## RMarkdown  
 Annotation of code is important for programmers of all levels. When code is annotated, it is easy for others to understand and perhaps more importantly, easier for the person who wrote the code to understand when returning to a project days, months, or even years later. RMarkdown allows us to embed code in annotated chunks, show the results of analyses, and display graphical output all in one file. It is a great way of making a report which can be conveniently output to html or pdf.  
 
