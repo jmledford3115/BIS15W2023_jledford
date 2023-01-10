@@ -27,6 +27,10 @@ Run the following code by clicking the small green arrow to check your current w
 getwd()
 ```
 
+```{r}
+getwd()
+```
+
 If you are not in the **lab 1 folder**, please navigate to it: Session>Set Working Directory>Choose Directory>Desktop>lab1.  
 
 Re-run the code below to confirm.
@@ -41,6 +45,10 @@ Double click to open R (not RStudio) and find the carrot `>`. This is where comm
 You can use R as a calculator; just enter the expression and press return.  Experiment by evaluating the following expression.
 ```{r}
 4*12
+```
+
+```{r}
+3*2
 ```
 
 Order of operations applies and you don't need to add an '=' sign.
@@ -63,6 +71,18 @@ mean(x)
 We can do the same thing for median.  
 ```{r}
 median(x)
+```
+
+```{r}
+3-1
+```
+
+```{r}
+
+```
+
+```{r}
+
 ```
 
 ## RMarkdown  
