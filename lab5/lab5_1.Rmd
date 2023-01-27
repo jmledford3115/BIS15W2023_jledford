@@ -51,17 +51,8 @@ mammals <- rename(mammals, genus="Genus", wean_mass="wean mass", max_life= "max.
 names(mammals)
 ```
 
-```{r}
-glimpse(mammals)
-```
-
-```{r}
-mammals %>% 
-  mutate_if(is.character, as.factor)
-```
-
 ## Pipes `%>%` 
-In order to start combining `select()`, `filter()`, and other functions efficiently, we need to learn pipes. Pipes feed the output from one function into the input of another function. This helps us keep our code sequential and clean.  
+In order to start combining `select()`, `filter()`, and other functions more efficiently, we need to learn pipes. Pipes feed the output from one function into the input of another function. This helps us keep our code sequential and clean.  
 
 In this example, we use a pipe to select only `lakeid` and `scalelength` then filter that output only for lakes "AL". Notice that we only need to call the data one time.
 ```{r}
@@ -73,7 +64,7 @@ select(fish, lakeid, scalelength)
 ```
 
 ```{r}
-fish %>% 
+fish %>%
   select(lakeid, scalelength) %>%
   filter(lakeid == "AL")
 ```
@@ -88,9 +79,11 @@ mammals %>%
 ## Practice
 1. We are interested in the fish from the lakes "AL" and "AR" with a radii length between 2 and 4. Extract this information from the `fish` data. Use pipes!  
 ```{r}
-fish_subset <- fish %>% 
-  filter(lakeid == "AL" | lakeid == "AR") %>% 
-  filter(radii_length_mm>=2 & radii_length_mm<=4)
+fish %>% 
+  select(lakeid, radii_length_mm) %>% 
+  filter(lakeid=="AL" | lakeid=="AR") %>% 
+  filter(between(radii_length_mm, 2, 4)) %>% 
+  arrange(desc(radii_length_mm))
 ```
 
 ## `arrange()`
@@ -115,16 +108,13 @@ fish %>%
   filter(lakeid=="AL") %>% 
   arrange(fish_id)
 ```
-```{r}
-names(fish)
-```
 
 ## Practice
 1. We are interested in the radii length and scalelength of fish with the id `300`. Extract this information from the `fish` data. Please sort the data by radii length.
 ```{r}
 fish %>% 
-  filter(fish_id=="300") %>% 
-  select(radii_length_mm, scalelength) %>% 
+  select(fish_id, radii_length_mm, scalelength) %>% 
+  filter(fish_id==300) %>% 
   arrange(radii_length_mm)
 ```
 
@@ -149,14 +139,8 @@ mammals %>%
   mutate_all(tolower)
 ```
 
-Using the across function we can specify individual columns.
-```{r}
-mammals %>% 
-  mutate(across(c("order", "family"), tolower))
-```
-
 ## `if_else()`
-We will briefly introduce `if_else()` here because it allows us to use `mutate()` but not have the entire column affected in the same way. In a sense, this can function like find and replace in a spreadsheet program. With `ifelse()`, you first specify a logical statement, afterwards what needs to happen if the statement returns `TRUE`, and lastly what needs to happen if it's  `FALSE`.  
+We will briefly introduce `if_else()` here because it allows us to use `mutate()` but not the entire column affected in the same way. In a sense, this can function like find and replace in a spreadsheet program. With `ifelse()`, you first specify a logical statement, afterwards what needs to happen if the statement returns `TRUE`, and lastly what needs to happen if it's  `FALSE`.  
 
 Have a look at the data from mammals below. Notice that the values for newborn include `-999.00`. This is sometimes used as a placeholder for NA (but, is a really bad idea). We can use `if_else()` to replace `-999.00` with `NA`.  
 ```{r}
@@ -175,7 +159,7 @@ mammals %>%
 ## Practice
 1. Use `mutate()` to make a new column that is the half length of each fish: length_half = length/2. Select only fish_id, length, and length_half.
 ```{r}
-fish %>% 
+fish %>%
   mutate(length_half=length/2) %>% 
   select(fish_id, length, length_half)
 ```
@@ -184,10 +168,10 @@ fish %>%
 ```{r}
 mammals %>% 
   select(family, genus, species, max_life) %>% 
-  mutate(max_life_new=ifelse(max_life=="-999", NA, max_life)) %>% 
-  arrange(desc(max_life_new))
+  mutate(max_life_new= ifelse(max_life==-999, NA, max_life)) %>% 
+  arrange(max_life)
 ```
 
-## That's it! Let's take a break and then move on to part 2! 
+## That's it! Take a break and I will see you on Zoom!  
 
 -->[Home](https://jmledford3115.github.io/datascibiol/)  
