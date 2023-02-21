@@ -1,0 +1,22 @@
+---
+title: "Open Lab"
+date: "`r Sys.Date()`"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library("jpeg")
+```
+
+## Agenda
+1. Clean-up from lab 11, part 2.
+2. Repository clean-up.
+3. Midterm 2 reminders.
+4. Class Projects.
+
+## Projects
+1. By the end of today, you need to get an OK from Hannah and I to proceed.
+2. You can use multiple data sets, but remember to find the "story" for your presentation.
+3. Build a new repository on GitHub that is for your project.
+4. If you need help, please ask!
